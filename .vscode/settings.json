@@ -1,5 +1,6 @@
 {
     "editor.tabSize": 2,
+    "editor.formatOnSave": true,
     "path-intellisense.mappings": {
         "/": "${workspaceRoot}",
         "src": "${workspaceRoot}/src",
