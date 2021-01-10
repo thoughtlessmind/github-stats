@@ -9,6 +9,7 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline'
 import { useSelector } from 'react-redux'
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline'
 import { abbrNumber } from 'utils/abbrNumber'
+import UserOrganization from './UserOrganization'
 
 const UserInfo = () => {
   const classes = useStyles()
@@ -53,7 +54,7 @@ const UserInfo = () => {
             >
               <b>{abbrNumber(userInfo.followers, 1)}</b> followers
             </Typography>
-            &nbsp;|&nbsp;
+            &nbsp;·&nbsp;
             <Typography
               component="a"
               href={`${userInfo.html_url}?tab=following`}
@@ -97,6 +98,7 @@ const UserInfo = () => {
           </Typography>
         </>
       )}
+      <UserOrganization />
     </Box>
   )
 }
@@ -147,6 +149,26 @@ const useStyles = makeStyles((theme) =>
         whiteSpace: 'nowrap',
         color: 'inherit',
         textDecoration: 'none'
+      },
+      '&>a': {
+        // textDecoration: 'underline',
+        position: 'relative',
+        '&:after': {
+          position: 'absolute',
+          bottom: 2,
+          left: 0,
+          height: 1,
+          content: '" "',
+          backgroundColor: 'grey',
+          transformOrigin: 'left',
+          width: '0',
+          transition: '0.2s '
+        },
+        '&:hover': {
+          '&:after': {
+            width: '100%'
+          }
+        }
       },
       '&>svg': {
         marginRight: theme.spacing(0.5)

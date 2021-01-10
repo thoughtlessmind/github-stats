@@ -3,7 +3,10 @@ import { makeStyles, createStyles, Grid } from '@material-ui/core'
 import { UserInfo } from 'components'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getUserPublicInfo } from 'app-redux/thunks/users/actions'
+import {
+  getUserOrganizations,
+  getUserPublicInfo
+} from 'app-redux/thunks/users/actions'
 
 const UserStats = (props) => {
   // eslint-disable-next-line no-unused-vars
@@ -12,6 +15,7 @@ const UserStats = (props) => {
 
   useEffect(() => {
     dispatch(getUserPublicInfo())
+    dispatch(getUserOrganizations())
   }, [])
 
   return (

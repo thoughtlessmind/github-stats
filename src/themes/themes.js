@@ -44,10 +44,9 @@ let theme = createMuiTheme({
     MuiButton: {
       variant: 'contained',
       color: 'primary'
-    },
+    }
   },
   overrides: {
-
     MuiButton: {
       root: {
         fontSize: '0.8rem',
@@ -68,4 +67,4 @@ let theme = createMuiTheme({
   }
 })
 
-// export default theme
+export default theme
