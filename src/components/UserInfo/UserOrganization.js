@@ -9,7 +9,12 @@ const UserOrganization = () => {
     (state) => state.userOrganization
   )
   return (
-    <Box className={classes.userOrganizationContainer}>
+    <Box
+      style={{
+        display: !loading && userOrganization.length == 0 ? 'none' : 'inherit'
+      }}
+      className={classes.userOrganizationContainer}
+    >
       <Typography variant="h6">Organizations</Typography>
       <Box className={classes.orgAvatarContainer}>
         {loading ? (

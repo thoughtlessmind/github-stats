@@ -64,23 +64,27 @@ const UserInfo = () => {
             </Typography>
           </Typography>
 
-          <Typography className={classes.flexLineWithIcon}>
-            <LinkIcon fontSize="small" />
-            <Typography href={userInfo.blog} target="_blank" component={'a'}>
-              {userInfo.blog}
+          {userInfo.blog && (
+            <Typography className={classes.flexLineWithIcon}>
+              <LinkIcon fontSize="small" />
+              <Typography href={userInfo.blog} target="_blank" component={'a'}>
+                {userInfo.blog}
+              </Typography>
             </Typography>
-          </Typography>
+          )}
 
-          <Typography className={classes.flexLineWithIcon}>
-            <BusinessRoundedIcon fontSize="small" />
-            <Typography
-              href={`https://github.com/${userInfo.company.substring(1)}`}
-              target="_blank"
-              component={'a'}
-            >
-              {userInfo.company}
+          {userInfo.company && (
+            <Typography className={classes.flexLineWithIcon}>
+              <BusinessRoundedIcon fontSize="small" />
+              <Typography
+                href={`https://github.com/${userInfo.company.substring(1)}`}
+                target="_blank"
+                component={'a'}
+              >
+                {userInfo.company}
+              </Typography>
             </Typography>
-          </Typography>
+          )}
 
           <Typography
             className={classes.flexLineWithIcon}
@@ -144,6 +148,7 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       alignItems: 'center',
       color: grey[800],
+      margin: '2px 0',
       '&>a, &>time, &>span': {
         fontSize: 12,
         whiteSpace: 'nowrap',
