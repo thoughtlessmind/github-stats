@@ -14,10 +14,12 @@ import {
   getUserOrganizations,
   getUserPublicInfo
 } from 'app-redux/thunks/users/actions'
+import { useHistory } from 'react-router-dom'
 
 const AppHeader = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const [userName, setUserName] = useState('')
 
@@ -25,6 +27,7 @@ const AppHeader = () => {
     e.preventDefault()
     dispatch(getUserPublicInfo(userName))
     dispatch(getUserOrganizations(userName))
+    history.push(`/${userName}`)
   }
 
   const handleUserInput = (e) => {
@@ -32,8 +35,8 @@ const AppHeader = () => {
   }
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
+    // <div className={classes.root}>
+      <AppBar position="sticky">
         <Toolbar>
           <IconButton
             edge="start"
@@ -71,14 +74,14 @@ const AppHeader = () => {
           </form>
         </Toolbar>
       </AppBar>
-    </div>
+    // {/* </div> */}
   )
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
+  // root: {
+  //   flexGrow: 1
+  // },
   menuButton: {
     marginRight: theme.spacing(2)
   },

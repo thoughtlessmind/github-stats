@@ -7,6 +7,7 @@ import {
   getUserOrganizations,
   getUserPublicInfo
 } from 'app-redux/thunks/users/actions'
+import NaviagationTabs from 'components/NaviagationTabs/NaviagationTabs'
 
 const UserStats = (props) => {
   // eslint-disable-next-line no-unused-vars
@@ -20,8 +21,11 @@ const UserStats = (props) => {
 
   return (
     <Grid container>
-      <Grid md={2} sm={3} xs={12} item>
+      <Grid md={3} sm={3} xs={12} item>
         <UserInfo />
+      </Grid>
+      <Grid md={9} sm={9} xs={12}>
+        <NaviagationTabs />
       </Grid>
     </Grid>
   )
