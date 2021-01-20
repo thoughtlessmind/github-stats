@@ -2,24 +2,45 @@ import React from 'react'
 import { Box, makeStyles, createStyles, Typography } from '@material-ui/core'
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined'
 import { grey } from '@material-ui/core/colors'
-import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { swtichTabAction } from 'app-redux/thunks/tabsNavigation/actions'
+import clsx from 'clsx'
+
+const tabItems = [
+  {
+    name:'Overview',
+    icon: <LibraryBooksOutlinedIcon />
+  },
+  {
+    name:'Repos',
+    icon: <LibraryBooksOutlinedIcon />
+  },
+  {
+    name:'Open Source',
+    icon: <LibraryBooksOutlinedIcon />
+  },
+]
 
 const NaviagationTabs = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+
+  const {activeTab} = useSelector(state =>state.tabState)
+
+  const handleTabSwitch = (val) =>  {
+    dispatch(swtichTabAction(val))
+  }
+
   return (
     <Box className={classes.tabsContainer}>
-      <Box component={NavLink} to="/">
-        <LibraryBooksOutlinedIcon />
-        <Typography component={'span'}>Overview</Typography>
+      {
+        tabItems.map((tab, index)=>(
+          <Box className={clsx({active: index === activeTab })} onClick={() => handleTabSwitch(index)}>
+        {tab.icon}
+        <Typography component={'span'}>{tab.name}</Typography>
       </Box>
-      <Box component={NavLink} to="/repos">
-        <LibraryBooksOutlinedIcon />
-        <Typography component={'span'}>Repos</Typography>
-      </Box>
-      <Box component={NavLink} to="/open-source">
-        <LibraryBooksOutlinedIcon />
-        <Typography component={'span'}>Open Source</Typography>
-      </Box>
+        ))
+      }
     </Box>
   )
 }
@@ -30,7 +51,7 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       alignItems: 'center',
       height: '45px',
-      '&> a': {
+      '&> div': {
         width: '150px',
         height: '100%',
         display: 'flex',
