@@ -9,17 +9,21 @@ import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 import { Button } from '@material-ui/core'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   getUserOrganizations,
   getUserPublicInfo
 } from 'app-redux/thunks/users/actions'
 import { useHistory } from 'react-router-dom'
+import { getUserPublicRepos } from 'app-redux/thunks/repos/actions'
+import { LoadingButton } from 'CustomComponents'
 
 const AppHeader = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
+
+  const {loading} = useSelector(state=>state.userPublicInfo)
 
   const [userName, setUserName] = useState('')
 
@@ -27,6 +31,7 @@ const AppHeader = () => {
     e.preventDefault()
     dispatch(getUserPublicInfo(userName))
     dispatch(getUserOrganizations(userName))
+    dispatch(getUserPublicRepos(userName))
     history.push(`/${userName}`)
   }
 
@@ -68,9 +73,9 @@ const AppHeader = () => {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </div>
-            <Button type="submit" variant="contained">
+            <LoadingButton loading={loading} type="submit" variant="contained">
               Search
-            </Button>
+            </LoadingButton>
           </form>
         </Toolbar>
       </AppBar>

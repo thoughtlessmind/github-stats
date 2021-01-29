@@ -2,8 +2,8 @@ import axios from 'axios'
 import { USERS, USER_ORGANIZATION } from './reducer'
 
 /**
- * #### endpoint : `/users/{username}`
- * Fetch the public information of the user
+ * Fetch the public information of the user  
+ * _endpoint_ : `/users/{username}`  
  * [Github API Documentation](https://docs.github.com/en/free-pro-team@latest/rest/reference/users#list-users)
  * @param {String} username username of the user
  */
@@ -20,9 +20,9 @@ export const getUserPublicInfo = (user = 'gaearon') => {
 }
 
 /**
- * #### endpoint : `/users/{username}/org`
- * Fetches the related organizations of the user
- * [Github API Documentation](https://docs.github.com/en/free-pro-team@latest/rest/reference/orgs#list-organizations-for-a-user)
+ * Fetches the related organizations of the user  
+ * _endpoint_ : `/users/{username}/org`  
+ * [Github API documentation](https://docs.github.com/en/free-pro-team@latest/rest/reference/orgs#list-organizations-for-a-user)  
  * @param {String} username username of the user
  */
 export const getUserOrganizations = (username = 'gaearon') => {

@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
 import { Provider } from 'react-redux'
 import { MuiThemeProvider } from '@material-ui/core'
 import { themes } from 'themes'
